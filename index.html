@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Esto No Es Una Revista</title>
     <style>
-        /* Pantalla de carga limpia mientras se procesa la redirección */
+        /* Pantalla de espera limpia en negro mientras salta de servidor */
         body { 
             background-color: #000000; 
             margin: 0; 
@@ -12,18 +12,20 @@
         }
     </style>
     <script>
-        // REGLA DE REDIRECCIÓN INTELIGENTE
         document.addEventListener("DOMContentLoaded", () => {
-            // Configura aquí el número de edición al que querés enviar al lector:
+            // Tu usuario de GitHub
+            const USUARIO = "Javo-Martinez";
+
+            // Definimos que el número que queremos mostrar en portada es el 1
             const EDICION_VIGENTE = 1; 
 
-            // Formateamos el número para que siempre tenga dos dígitos (ej: 1 -> 01, 12 -> 12)
-            const numeroFormateado = String(EDICION_VIGENTE).padStart(2, '0');
+            // Formateamos el número a dos dígitos (ej: 1 -> "01")
+            const numFormateado = String(EDICION_VIGENTE).padStart(2, '0');
 
-            // Armamos la ruta física hacia la carpeta de esa edición
-            const urlDestino = `revista${numeroFormateado}/index.html`;
+            // Armamos la URL pública nativa de tu nuevo repositorio satélite bloque 01-10
+            const urlDestino = `https://${USUARIO}.github.io/eneur-01-10/revista${numFormateado}/index.html`;
 
-            // Ejecutamos la redirección inmediata saltando el historial del navegador
+            // Ejecutamos la redirección saltando el historial para evitar bucles
             window.location.replace(urlDestino);
         });
     </script>
